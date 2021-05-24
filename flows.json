@@ -16,7 +16,7 @@
     {
         "id": "ca44c186.e38c2",
         "type": "tab",
-        "label": "Initialisation",
+        "label": "Initialisation and Controls",
         "disabled": false,
         "info": ""
     },
@@ -192,6 +192,16 @@
         "hidden": false
     },
     {
+        "id": "bb282904.cf6928",
+        "type": "ui_group",
+        "name": "Controls",
+        "tab": "f2bc0cf7.556ce",
+        "order": 6,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
         "id": "4aaec0e6.7a503",
         "type": "rpi-gpio out",
         "z": "76b0c291.39da1c",
@@ -201,8 +211,8 @@
         "level": "0",
         "freq": "",
         "out": "out",
-        "x": 720,
-        "y": 220,
+        "x": 760,
+        "y": 800,
         "wires": []
     },
     {
@@ -229,7 +239,7 @@
         "offset2": 0,
         "offset3": 0,
         "x": 140,
-        "y": 820,
+        "y": 980,
         "wires": [
             []
         ]
@@ -238,7 +248,7 @@
         "id": "c8e118ef.454b48",
         "type": "inject",
         "z": "76b0c291.39da1c",
-        "name": "5hz_clk",
+        "name": "5hz_clk_1sec_after_init",
         "props": [
             {
                 "p": "payload"
@@ -250,22 +260,22 @@
         ],
         "repeat": "0.2",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "1",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 520,
+        "x": 150,
+        "y": 140,
         "wires": [
             [
-                "a7763c82.12b53",
                 "a2ec8877.b96fc8",
-                "26a64052.ec20a",
-                "8e3a720c.317ba",
-                "12de445d.c70a8c",
                 "b55c1269.66fa1",
-                "d20ec8ee.53eab8"
+                "d20ec8ee.53eab8",
+                "26a64052.ec20a",
+                "12de445d.c70a8c",
+                "a7763c82.12b53",
+                "8e3a720c.317ba"
             ]
         ]
     },
@@ -280,7 +290,7 @@
         "outputs": 2,
         "stime": false,
         "x": 110,
-        "y": 740,
+        "y": 900,
         "wires": [
             [
                 "e3430aec.f1cee8"
@@ -298,8 +308,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 460,
-        "y": 520,
+        "x": 480,
+        "y": 140,
         "wires": [
             [
                 "c2b5c295.513a9"
@@ -312,7 +322,7 @@
         "z": "76b0c291.39da1c",
         "name": "PV Current",
         "group": "c2d0b90f.37e558",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -328,8 +338,8 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 710,
-        "y": 520,
+        "x": 730,
+        "y": 140,
         "wires": []
     },
     {
@@ -338,7 +348,7 @@
         "z": "76b0c291.39da1c",
         "name": "Battery Current",
         "group": "f935a064.ba785",
-        "order": 1,
+        "order": 2,
         "width": "0",
         "height": "0",
         "gtype": "gage",
@@ -354,8 +364,8 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 720,
-        "y": 680,
+        "x": 740,
+        "y": 300,
         "wires": []
     },
     {
@@ -368,8 +378,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 470,
-        "y": 680,
+        "x": 490,
+        "y": 300,
         "wires": [
             [
                 "5bf7287d.0dd248"
@@ -398,8 +408,8 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 720,
-        "y": 720,
+        "x": 740,
+        "y": 340,
         "wires": []
     },
     {
@@ -412,8 +422,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 470,
-        "y": 720,
+        "x": 490,
+        "y": 340,
         "wires": [
             [
                 "ad43aca9.039c5",
@@ -431,8 +441,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 490,
-        "y": 420,
+        "x": 510,
+        "y": 40,
         "wires": [
             []
         ]
@@ -441,7 +451,7 @@
         "id": "2d9edd0a.d7d792",
         "type": "ui_led",
         "z": "76b0c291.39da1c",
-        "order": 2,
+        "order": 1,
         "group": "c2d0b90f.37e558",
         "width": 0,
         "height": 0,
@@ -464,8 +474,8 @@
         "shape": "circle",
         "showGlow": true,
         "name": "pv_connected",
-        "x": 720,
-        "y": 160,
+        "x": 760,
+        "y": 740,
         "wires": []
     },
     {
@@ -478,8 +488,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 460,
-        "y": 580,
+        "x": 480,
+        "y": 200,
         "wires": [
             [
                 "413b7686.514508",
@@ -493,7 +503,7 @@
         "z": "76b0c291.39da1c",
         "name": "PV Power",
         "group": "c2d0b90f.37e558",
-        "order": 6,
+        "order": 3,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -509,8 +519,8 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 700,
-        "y": 580,
+        "x": 720,
+        "y": 200,
         "wires": []
     },
     {
@@ -519,7 +529,7 @@
         "z": "76b0c291.39da1c",
         "name": "PW Power",
         "group": "c2d0b90f.37e558",
-        "order": 7,
+        "order": 4,
         "width": 0,
         "height": 0,
         "label": "PV Power (W)",
@@ -550,8 +560,8 @@
         ],
         "outputs": 1,
         "useDifferentColor": false,
-        "x": 910,
-        "y": 620,
+        "x": 930,
+        "y": 240,
         "wires": [
             []
         ]
@@ -566,8 +576,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 460,
-        "y": 920,
+        "x": 480,
+        "y": 540,
         "wires": [
             [
                 "104074cc.da666b"
@@ -596,8 +606,8 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 710,
-        "y": 920,
+        "x": 730,
+        "y": 540,
         "wires": []
     },
     {
@@ -610,8 +620,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 460,
-        "y": 800,
+        "x": 480,
+        "y": 420,
         "wires": [
             [
                 "c90ae616.bf6b58"
@@ -623,15 +633,15 @@
         "type": "ui_text",
         "z": "76b0c291.39da1c",
         "group": "f935a064.ba785",
-        "order": 2,
+        "order": 1,
         "width": 0,
         "height": 0,
         "name": "cell_voltage",
         "label": "Cell Voltage",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 710,
-        "y": 800,
+        "x": 730,
+        "y": 420,
         "wires": []
     },
     {
@@ -639,7 +649,7 @@
         "type": "ui_led",
         "z": "76b0c291.39da1c",
         "order": 3,
-        "group": "c2d0b90f.37e558",
+        "group": "bb282904.cf6928",
         "width": 0,
         "height": 0,
         "label": "Auto Control Enabled",
@@ -661,15 +671,15 @@
         "shape": "circle",
         "showGlow": true,
         "name": "auto_enabled",
-        "x": 700,
-        "y": 100,
+        "x": 740,
+        "y": 680,
         "wires": []
     },
     {
         "id": "c603aee5.8fb4a",
         "type": "inject",
         "z": "76b0c291.39da1c",
-        "name": "5Hz_clk",
+        "name": "5Hz_clk_1.5sec_after_init",
         "props": [
             {
                 "p": "payload"
@@ -682,12 +692,12 @@
         "repeat": "0.2",
         "crontab": "",
         "once": true,
-        "onceDelay": "1",
+        "onceDelay": "1.5",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 140,
-        "y": 100,
+        "x": 160,
+        "y": 740,
         "wires": [
             [
                 "d06e18df.c7d238",
@@ -733,8 +743,8 @@
         ],
         "outputs": 1,
         "useDifferentColor": false,
-        "x": 920,
-        "y": 760,
+        "x": 940,
+        "y": 380,
         "wires": [
             []
         ]
@@ -754,8 +764,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 710,
-        "y": 620,
+        "x": 730,
+        "y": 240,
         "wires": [
             [
                 "c0e90f26.573f2"
@@ -777,8 +787,8 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 720,
-        "y": 760,
+        "x": 740,
+        "y": 380,
         "wires": [
             [
                 "9287fd31.95669"
@@ -795,8 +805,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 430,
-        "y": 280,
+        "x": 470,
+        "y": 860,
         "wires": [
             []
         ]
@@ -811,8 +821,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 440,
-        "y": 160,
+        "x": 480,
+        "y": 740,
         "wires": [
             [
                 "2d9edd0a.d7d792",
@@ -830,8 +840,8 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 410,
-        "y": 100,
+        "x": 450,
+        "y": 680,
         "wires": [
             [
                 "cc17a1a0.6b6a6"
@@ -966,7 +976,7 @@
         "order": 2,
         "width": "0",
         "height": "0",
-        "label": "",
+        "label": "Temperature",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -1009,7 +1019,7 @@
         "order": 2,
         "width": 0,
         "height": 0,
-        "label": "",
+        "label": "Humidity",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm:ss",
@@ -1096,7 +1106,7 @@
         "name": "user_disconnect_pv",
         "label": "Disable PV",
         "tooltip": "Connect PV to charge controller",
-        "group": "c2d0b90f.37e558",
+        "group": "bb282904.cf6928",
         "order": 4,
         "width": 0,
         "height": 0,
@@ -1160,7 +1170,7 @@
         "name": "enable_auto_pv_control",
         "label": "Auto",
         "tooltip": "Enable auto PV control",
-        "group": "c2d0b90f.37e558",
+        "group": "bb282904.cf6928",
         "order": 5,
         "width": 0,
         "height": 0,
