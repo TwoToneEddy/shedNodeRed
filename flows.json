@@ -2,162 +2,194 @@
     {
         "id": "76b0c291.39da1c",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Automation",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "e8b8a7ac.5dd2f8",
-        "type": "ui_gauge",
-        "z": "76b0c291.39da1c",
-        "name": "",
-        "group": "86ad0b61.c0e7e8",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Humidity",
-        "label": "%",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "100",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 880,
-        "y": 600,
-        "wires": []
+        "id": "4e2566b7.d794d8",
+        "type": "tab",
+        "label": "Environment",
+        "disabled": false,
+        "info": ""
     },
     {
-        "id": "efed3ee3.da3c8",
-        "type": "rpi-dht22",
-        "z": "76b0c291.39da1c",
-        "name": "Temperature",
-        "topic": "rpi-dht22",
-        "dht": "22",
-        "pintype": "0",
-        "pin": "17",
-        "x": 270,
-        "y": 660,
-        "wires": [
-            [
-                "2ce424c.811abdc",
-                "2e1fb1c9.37fa5e",
-                "cd928ebc.7595d"
-            ]
-        ]
+        "id": "ca44c186.e38c2",
+        "type": "tab",
+        "label": "Initialisation",
+        "disabled": false,
+        "info": ""
     },
     {
-        "id": "c8e29b9f.a51fe8",
-        "type": "inject",
-        "z": "76b0c291.39da1c",
-        "name": "0.2hz_clk",
-        "props": [
-            {
-                "p": "payload"
+        "id": "d2548f36.f8db4",
+        "type": "ui_tab",
+        "name": "Shed",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "612a044d.2efefc",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-dark",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
             },
-            {
-                "p": "topic",
-                "vt": "str"
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#097479",
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#0eb8c0",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#097479",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
             }
-        ],
-        "repeat": "5",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 70,
-        "y": 660,
-        "wires": [
-            [
-                "efed3ee3.da3c8"
-            ]
-        ]
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
     },
     {
-        "id": "2ce424c.811abdc",
-        "type": "function",
-        "z": "76b0c291.39da1c",
-        "name": "getHumidity",
-        "func": "msg.payload = msg.humidity;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 470,
-        "y": 600,
-        "wires": [
-            [
-                "e8b8a7ac.5dd2f8",
-                "e6f11af3.c972a8"
-            ]
-        ]
+        "id": "86ad0b61.c0e7e8",
+        "type": "ui_group",
+        "name": "Environment",
+        "tab": "f2bc0cf7.556ce",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": true
     },
     {
-        "id": "2e1fb1c9.37fa5e",
-        "type": "ui_gauge",
-        "z": "76b0c291.39da1c",
-        "name": "",
-        "group": "86ad0b61.c0e7e8",
+        "id": "f2bc0cf7.556ce",
+        "type": "ui_tab",
+        "name": "Dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c2d0b90f.37e558",
+        "type": "ui_group",
+        "name": "PV",
+        "tab": "f2bc0cf7.556ce",
         "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Temperature",
-        "label": "degrees C",
-        "format": "{{value}}",
-        "min": "-25",
-        "max": "75",
-        "colors": [
-            "#001eb3",
-            "#0fe600",
-            "#ca3838"
-        ],
-        "seg1": "9",
-        "seg2": "25",
-        "x": 890,
-        "y": 660,
-        "wires": []
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
-        "id": "16531275.ef9c0e",
-        "type": "ui_switch",
-        "z": "76b0c291.39da1c",
-        "name": "Enable PV",
-        "label": "Enable PV",
-        "tooltip": "Connect PV to charge controller",
-        "group": "c2d0b90f.37e558",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "false",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "true",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "x": 490,
-        "y": 880,
-        "wires": [
-            [
-                "4aaec0e6.7a503",
-                "2d9edd0a.d7d792"
-            ]
-        ]
+        "id": "f935a064.ba785",
+        "type": "ui_group",
+        "name": "Battery",
+        "tab": "f2bc0cf7.556ce",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "51282603.3865f8",
+        "type": "ui_group",
+        "name": "Load",
+        "tab": "f2bc0cf7.556ce",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "294a7a5f.cb1686",
+        "type": "ui_group",
+        "name": "Raspberry PI",
+        "tab": "f2bc0cf7.556ce",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "8bfa3728.2741e8",
+        "type": "ui_tab",
+        "name": "environment",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "4aaec0e6.7a503",
@@ -170,100 +202,14 @@
         "freq": "",
         "out": "out",
         "x": 720,
-        "y": 880,
+        "y": 220,
         "wires": []
-    },
-    {
-        "id": "c90c932c.19d31",
-        "type": "ui_chart",
-        "z": "76b0c291.39da1c",
-        "name": "tempChart",
-        "group": "86ad0b61.c0e7e8",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "2",
-        "removeOlderPoints": "288",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "x": 890,
-        "y": 720,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "5c255bbf.b26dc4",
-        "type": "ui_chart",
-        "z": "76b0c291.39da1c",
-        "name": "humidChart",
-        "group": "86ad0b61.c0e7e8",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "2",
-        "removeOlderPoints": "288",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "x": 890,
-        "y": 560,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "e3430aec.f1cee8",
         "type": "mcp342x",
         "z": "76b0c291.39da1c",
-        "addressai": 0,
+        "addressai": "0",
         "devtype": "4",
         "devadr": "0",
         "mode0": "0",
@@ -282,8 +228,8 @@
         "offset1": 0,
         "offset2": 0,
         "offset3": 0,
-        "x": 120,
-        "y": 1520,
+        "x": 140,
+        "y": 820,
         "wires": [
             []
         ]
@@ -310,7 +256,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 140,
-        "y": 1300,
+        "y": 520,
         "wires": [
             [
                 "a7763c82.12b53",
@@ -333,8 +279,8 @@
         "trungs": 5,
         "outputs": 2,
         "stime": false,
-        "x": 90,
-        "y": 1440,
+        "x": 110,
+        "y": 740,
         "wires": [
             [
                 "e3430aec.f1cee8"
@@ -353,7 +299,7 @@
         "initialize": "",
         "finalize": "",
         "x": 460,
-        "y": 1300,
+        "y": 520,
         "wires": [
             [
                 "c2b5c295.513a9"
@@ -383,7 +329,7 @@
         "seg1": "",
         "seg2": "",
         "x": 710,
-        "y": 1300,
+        "y": 520,
         "wires": []
     },
     {
@@ -409,7 +355,7 @@
         "seg1": "",
         "seg2": "",
         "x": 720,
-        "y": 1460,
+        "y": 680,
         "wires": []
     },
     {
@@ -423,7 +369,7 @@
         "initialize": "",
         "finalize": "",
         "x": 470,
-        "y": 1460,
+        "y": 680,
         "wires": [
             [
                 "5bf7287d.0dd248"
@@ -453,7 +399,7 @@
         "seg1": "",
         "seg2": "",
         "x": 720,
-        "y": 1500,
+        "y": 720,
         "wires": []
     },
     {
@@ -467,7 +413,7 @@
         "initialize": "",
         "finalize": "",
         "x": 470,
-        "y": 1500,
+        "y": 720,
         "wires": [
             [
                 "ad43aca9.039c5",
@@ -486,7 +432,7 @@
         "initialize": "",
         "finalize": "",
         "x": 490,
-        "y": 1200,
+        "y": 420,
         "wires": [
             []
         ]
@@ -519,37 +465,8 @@
         "showGlow": true,
         "name": "pv_connected",
         "x": 720,
-        "y": 840,
+        "y": 160,
         "wires": []
-    },
-    {
-        "id": "112c7365.ffeefd",
-        "type": "inject",
-        "z": "76b0c291.39da1c",
-        "name": "Enable PV on power up",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "false",
-        "payloadType": "jsonata",
-        "x": 150,
-        "y": 880,
-        "wires": [
-            [
-                "16531275.ef9c0e"
-            ]
-        ]
     },
     {
         "id": "12de445d.c70a8c",
@@ -562,7 +479,7 @@
         "initialize": "",
         "finalize": "",
         "x": 460,
-        "y": 1360,
+        "y": 580,
         "wires": [
             [
                 "413b7686.514508",
@@ -593,7 +510,7 @@
         "seg1": "",
         "seg2": "",
         "x": 700,
-        "y": 1360,
+        "y": 580,
         "wires": []
     },
     {
@@ -634,7 +551,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "x": 910,
-        "y": 1400,
+        "y": 620,
         "wires": [
             []
         ]
@@ -650,7 +567,7 @@
         "initialize": "",
         "finalize": "",
         "x": 460,
-        "y": 1700,
+        "y": 920,
         "wires": [
             [
                 "104074cc.da666b"
@@ -680,7 +597,7 @@
         "seg1": "",
         "seg2": "",
         "x": 710,
-        "y": 1700,
+        "y": 920,
         "wires": []
     },
     {
@@ -694,7 +611,7 @@
         "initialize": "",
         "finalize": "",
         "x": 460,
-        "y": 1580,
+        "y": 800,
         "wires": [
             [
                 "c90ae616.bf6b58"
@@ -714,74 +631,8 @@
         "format": "{{msg.payload}}",
         "layout": "row-spread",
         "x": 710,
-        "y": 1580,
+        "y": 800,
         "wires": []
-    },
-    {
-        "id": "32f82a54.c51a06",
-        "type": "function",
-        "z": "76b0c291.39da1c",
-        "name": "disable_solar_when_battery_full",
-        "func": "var battery_voltage = global.get('battery_voltage');\nvar vmax = 12;\nvar hyst = 0.2;\nvar auto_disconnect_pv;\n\nif(global.get('auto')==true){\n    if(battery_voltage > vmax){\n        global.set('auto_disconnect_pv',true);\n    }\n    if(battery_voltage < (vmax-hyst)){\n        global.set('auto_disconnect_pv',false);\n    }\n    \n    \n    msg.payload = global.get('auto_disconnect_pv');\n}else{\n    global.set('auto_disconnect_pv',false);\n    msg.payload = true;\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 430,
-        "y": 1080,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "8986eae5.5f2fb8",
-        "type": "ui_switch",
-        "z": "76b0c291.39da1c",
-        "name": "enable_auto_pv_control",
-        "label": "Auto",
-        "tooltip": "Enable auto PV control",
-        "group": "c2d0b90f.37e558",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "x": 530,
-        "y": 960,
-        "wires": [
-            [
-                "78be890b.4e7608",
-                "cc17a1a0.6b6a6"
-            ]
-        ]
-    },
-    {
-        "id": "78be890b.4e7608",
-        "type": "function",
-        "z": "76b0c291.39da1c",
-        "name": "set_auto_pv",
-        "func": "global.set('auto',msg.payload);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 790,
-        "y": 960,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "cc17a1a0.6b6a6",
@@ -810,15 +661,15 @@
         "shape": "circle",
         "showGlow": true,
         "name": "auto_enabled",
-        "x": 810,
-        "y": 1020,
+        "x": 700,
+        "y": 100,
         "wires": []
     },
     {
         "id": "c603aee5.8fb4a",
         "type": "inject",
         "z": "76b0c291.39da1c",
-        "name": "",
+        "name": "5Hz_clk",
         "props": [
             {
                 "p": "payload"
@@ -828,18 +679,20 @@
                 "vt": "str"
             }
         ],
-        "repeat": "5",
+        "repeat": "0.2",
         "crontab": "",
         "once": true,
-        "onceDelay": "2",
+        "onceDelay": "1",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 120,
-        "y": 1080,
+        "x": 140,
+        "y": 100,
         "wires": [
             [
-                "32f82a54.c51a06"
+                "d06e18df.c7d238",
+                "2b2e3b96.c01214",
+                "e47905f1.fd0998"
             ]
         ]
     },
@@ -881,7 +734,7 @@
         "outputs": 1,
         "useDifferentColor": false,
         "x": 920,
-        "y": 1540,
+        "y": 760,
         "wires": [
             []
         ]
@@ -902,7 +755,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 710,
-        "y": 1400,
+        "y": 620,
         "wires": [
             [
                 "c0e90f26.573f2"
@@ -925,7 +778,7 @@
         "randomUnits": "seconds",
         "drop": false,
         "x": 720,
-        "y": 1540,
+        "y": 760,
         "wires": [
             [
                 "9287fd31.95669"
@@ -933,97 +786,472 @@
         ]
     },
     {
-        "id": "e6f11af3.c972a8",
-        "type": "delay",
+        "id": "d06e18df.c7d238",
+        "type": "function",
         "z": "76b0c291.39da1c",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "10",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 700,
-        "y": 560,
+        "name": "pv_charge_control",
+        "func": "var user_enable_pv = global.get('user_disconnect_pv');\nvar battery_voltage = global.get('battery_voltage');\nvar auto = global.get('auto');\nvar auto_latch = global.get('auto_latch');\nvar disconnect_pv = global.get('disconnect_pv');\nvar vmax = 12;\nvar hyst = 0.2;\n\n\n\nif(global.get('auto')==true){\n    // If first time going into auto mode\n    if(auto_latch == false){\n        if(battery_voltage > vmax){\n            global.set('disconnect_pv',true);\n        }else{\n            global.set('disconnect_pv',false);\n        }\n        global.set('auto_latch',true);\n    }else{\n\n        if(battery_voltage > vmax){\n            global.set('disconnect_pv',true);\n        }\n        if(battery_voltage < (vmax-hyst)){\n            global.set('disconnect_pv',false);\n        }\n    }\n    \n}else{\n    global.set('auto_latch',false);\n    //Pass through the user control\n    global.set('disconnect_pv',user_enable_pv);\n}\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 430,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2b2e3b96.c01214",
+        "type": "function",
+        "z": "76b0c291.39da1c",
+        "name": "get_disconnect_pv",
+        "func": "msg.payload = global.get('disconnect_pv');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 160,
         "wires": [
             [
-                "5c255bbf.b26dc4"
+                "2d9edd0a.d7d792",
+                "4aaec0e6.7a503"
             ]
         ]
     },
     {
-        "id": "cd928ebc.7595d",
-        "type": "delay",
+        "id": "e47905f1.fd0998",
+        "type": "function",
         "z": "76b0c291.39da1c",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "10",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 700,
-        "y": 720,
+        "name": "get_auto",
+        "func": "msg.payload = global.get('auto');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 410,
+        "y": 100,
         "wires": [
             [
-                "c90c932c.19d31"
+                "cc17a1a0.6b6a6"
             ]
         ]
     },
     {
-        "id": "86ad0b61.c0e7e8",
-        "type": "ui_group",
-        "name": "Environment",
-        "tab": "f2bc0cf7.556ce",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": true
-    },
-    {
-        "id": "c2d0b90f.37e558",
-        "type": "ui_group",
-        "name": "PV",
-        "tab": "f2bc0cf7.556ce",
+        "id": "f8db618d.0283a",
+        "type": "ui_gauge",
+        "z": "4e2566b7.d794d8",
+        "name": "",
+        "group": "86ad0b61.c0e7e8",
         "order": 1,
-        "disp": true,
-        "width": "6",
-        "collapse": false
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 940,
+        "y": 180,
+        "wires": []
     },
     {
-        "id": "f935a064.ba785",
-        "type": "ui_group",
-        "name": "Battery",
-        "tab": "f2bc0cf7.556ce",
+        "id": "9c496e67.d70c6",
+        "type": "rpi-dht22",
+        "z": "4e2566b7.d794d8",
+        "name": "Temperature",
+        "topic": "rpi-dht22",
+        "dht": "22",
+        "pintype": "0",
+        "pin": "17",
+        "x": 330,
+        "y": 240,
+        "wires": [
+            [
+                "248015fd.96c52a",
+                "ab68d793.4d2578",
+                "1dd1e113.23037f"
+            ]
+        ]
+    },
+    {
+        "id": "4694b444.c67ecc",
+        "type": "inject",
+        "z": "4e2566b7.d794d8",
+        "name": "0.2hz_clk",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "9c496e67.d70c6"
+            ]
+        ]
+    },
+    {
+        "id": "248015fd.96c52a",
+        "type": "function",
+        "z": "4e2566b7.d794d8",
+        "name": "getHumidity",
+        "func": "msg.payload = msg.humidity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 530,
+        "y": 180,
+        "wires": [
+            [
+                "f8db618d.0283a",
+                "4f28bacc.92dc14"
+            ]
+        ]
+    },
+    {
+        "id": "ab68d793.4d2578",
+        "type": "ui_gauge",
+        "z": "4e2566b7.d794d8",
+        "name": "",
+        "group": "86ad0b61.c0e7e8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "degrees C",
+        "format": "{{value}}",
+        "min": "-25",
+        "max": "75",
+        "colors": [
+            "#001eb3",
+            "#0fe600",
+            "#ca3838"
+        ],
+        "seg1": "9",
+        "seg2": "25",
+        "x": 950,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "f100d6fd.dfa5b8",
+        "type": "ui_chart",
+        "z": "4e2566b7.d794d8",
+        "name": "tempChart",
+        "group": "86ad0b61.c0e7e8",
         "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false
+        "width": "0",
+        "height": "0",
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "2",
+        "removeOlderPoints": "288",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 950,
+        "y": 300,
+        "wires": [
+            []
+        ]
     },
     {
-        "id": "294a7a5f.cb1686",
-        "type": "ui_group",
-        "name": "Raspberry PI",
-        "tab": "f2bc0cf7.556ce",
+        "id": "dbd97b03.86d548",
+        "type": "ui_chart",
+        "z": "4e2566b7.d794d8",
+        "name": "humidChart",
+        "group": "86ad0b61.c0e7e8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "2",
+        "removeOlderPoints": "288",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 950,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4f28bacc.92dc14",
+        "type": "delay",
+        "z": "4e2566b7.d794d8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 760,
+        "y": 140,
+        "wires": [
+            [
+                "dbd97b03.86d548"
+            ]
+        ]
+    },
+    {
+        "id": "1dd1e113.23037f",
+        "type": "delay",
+        "z": "4e2566b7.d794d8",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "10",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 760,
+        "y": 300,
+        "wires": [
+            [
+                "f100d6fd.dfa5b8"
+            ]
+        ]
+    },
+    {
+        "id": "b97e688b.7de7e8",
+        "type": "ui_switch",
+        "z": "ca44c186.e38c2",
+        "name": "user_disconnect_pv",
+        "label": "Disable PV",
+        "tooltip": "Connect PV to charge controller",
+        "group": "c2d0b90f.37e558",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "false",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "true",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 520,
+        "y": 160,
+        "wires": [
+            [
+                "f925bc0c.6d4e1"
+            ]
+        ]
+    },
+    {
+        "id": "7eabf3d6.0d389c",
+        "type": "inject",
+        "z": "ca44c186.e38c2",
+        "name": "Enable PV on power up",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "jsonata",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "b97e688b.7de7e8",
+                "b73643a7.e37f9",
+                "62c86d4a.d86354"
+            ]
+        ]
+    },
+    {
+        "id": "62c86d4a.d86354",
+        "type": "ui_switch",
+        "z": "ca44c186.e38c2",
+        "name": "enable_auto_pv_control",
+        "label": "Auto",
+        "tooltip": "Enable auto PV control",
+        "group": "c2d0b90f.37e558",
         "order": 5,
-        "disp": true,
-        "width": "6",
-        "collapse": false
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 530,
+        "y": 100,
+        "wires": [
+            [
+                "9dde9703.dc30c8"
+            ]
+        ]
     },
     {
-        "id": "f2bc0cf7.556ce",
-        "type": "ui_tab",
-        "name": "Dashboard",
-        "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
+        "id": "9dde9703.dc30c8",
+        "type": "function",
+        "z": "ca44c186.e38c2",
+        "name": "set_auto",
+        "func": "global.set('auto',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 760,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f925bc0c.6d4e1",
+        "type": "function",
+        "z": "ca44c186.e38c2",
+        "name": "set_user_disconnect_pv",
+        "func": "global.set('user_disconnect_pv',msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 810,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b73643a7.e37f9",
+        "type": "function",
+        "z": "ca44c186.e38c2",
+        "name": "initialise_variables",
+        "func": "global.set('disconnect_pv',false);\nglobal.set('auto',false);\nglobal.set('auto_latch',false);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 510,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8958a3f4.88665",
+        "type": "comment",
+        "z": "4e2566b7.d794d8",
+        "name": "Get data on temp and humidity",
+        "info": "Get data on temp and humidity",
+        "x": 170,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "cde95ec1.658d9",
+        "type": "comment",
+        "z": "ca44c186.e38c2",
+        "name": "Initialise global variables",
+        "info": "",
+        "x": 530,
+        "y": 240,
+        "wires": []
     }
 ]
