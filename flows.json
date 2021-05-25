@@ -21,6 +21,20 @@
         "info": ""
     },
     {
+        "id": "e33b33c9.6663f",
+        "type": "tab",
+        "label": "Plots",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "f167e4d1.d12468",
+        "type": "tab",
+        "label": "Averaging",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "d2548f36.f8db4",
         "type": "ui_tab",
         "name": "Shed",
@@ -275,7 +289,8 @@
                 "26a64052.ec20a",
                 "12de445d.c70a8c",
                 "a7763c82.12b53",
-                "8e3a720c.317ba"
+                "8e3a720c.317ba",
+                "a6bb92e.bff3b7"
             ]
         ]
     },
@@ -426,8 +441,7 @@
         "y": 340,
         "wires": [
             [
-                "ad43aca9.039c5",
-                "6077e4b.5d5011c"
+                "ad43aca9.039c5"
             ]
         ]
     },
@@ -436,7 +450,7 @@
         "type": "function",
         "z": "76b0c291.39da1c",
         "name": "process_analog_inputs",
-        "func": "var inputBus0 = global.get('IA0');\n\n// AI0\t-\tPV Current sensor\n// AI1\t-\tBattery current sensor\n// AI2\t-\tUSB voltage\n// AI4\t-\tBattery voltage\nvar AI0 = inputBus0[0]/1000;\nvar AI1 = inputBus0[1]/1000;\nvar AI2 = inputBus0[2]/1000;\nvar AI3 = inputBus0[3]/1000;\n\n//Usb voltage\nvar usb_voltage_raw = AI2;\n\n//Current sensor calibration\nvar iZeroVolts = usb_voltage_raw/2;\nvar voltsPerAmp = 0.1;\n\n\nvar pv_current = ((AI0 - iZeroVolts) / voltsPerAmp).toFixed(3);\nvar battery_current = ((AI1 - iZeroVolts) / voltsPerAmp).toFixed(3);\nvar usb_voltage = usb_voltage_raw.toFixed(2);\n\n\nvar vbatPDRatio = 3.0916;\n\nvar battery_voltage = (AI3 * vbatPDRatio).toFixed(2);\n\nvar pv_power = (battery_voltage * pv_current).toFixed(2);\n\n\nglobal.set(\"pv_current\",pv_current);\nglobal.set(\"battery_current\",battery_current);\nglobal.set(\"usb_voltage\",usb_voltage);\nglobal.set(\"battery_voltage\",battery_voltage);\nglobal.set(\"pv_power\",pv_power);\n\nreturn msg;\n",
+        "func": "var inputBus0 = global.get('IA0');\n\n// AI0\t-\tPV Current sensor\n// AI1\t-\tBattery current sensor\n// AI2\t-\tUSB voltage\n// AI4\t-\tBattery voltage\nvar AI0 = inputBus0[0]/1000;\nvar AI1 = inputBus0[1]/1000;\nvar AI2 = inputBus0[2]/1000;\nvar AI3 = inputBus0[3]/1000;\n\n//Usb voltage\nvar usb_voltage_raw = AI2;\n\n//Current sensor calibration\nvar iZeroVolts = usb_voltage_raw/2;\nvar voltsPerAmp = 0.1;\n\n\nvar pv_current = ((AI0 - iZeroVolts) / voltsPerAmp).toFixed(3);\nvar battery_current = ((AI1 - iZeroVolts) / voltsPerAmp).toFixed(3);\nvar usb_voltage = usb_voltage_raw.toFixed(2);\n\n\nvar vbatPDRatio = 3.0916;\n\nvar battery_voltage = (AI3 * vbatPDRatio).toFixed(2);\n\nvar pv_power = (battery_voltage * pv_current).toFixed(2);\n\n\nglobal.set(\"pv_current\",parseFloat(pv_current));\nglobal.set(\"battery_current\",parseFloat(battery_current));\nglobal.set(\"usb_voltage\",parseFloat(usb_voltage));\nglobal.set(\"battery_voltage\",parseFloat(battery_voltage));\nglobal.set(\"pv_power\",parseFloat(pv_power));\n\nmsg.payload = pv_power;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -492,8 +506,7 @@
         "y": 200,
         "wires": [
             [
-                "413b7686.514508",
-                "d1d3f2c4.b2c0d"
+                "413b7686.514508"
             ]
         ]
     },
@@ -524,49 +537,6 @@
         "wires": []
     },
     {
-        "id": "c0e90f26.573f2",
-        "type": "ui_chart",
-        "z": "76b0c291.39da1c",
-        "name": "PW Power",
-        "group": "c2d0b90f.37e558",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "label": "PV Power (W)",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": 1,
-        "removeOlderPoints": "600",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "x": 930,
-        "y": 240,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "b55c1269.66fa1",
         "type": "function",
         "z": "76b0c291.39da1c",
@@ -577,7 +547,7 @@
         "initialize": "",
         "finalize": "",
         "x": 480,
-        "y": 540,
+        "y": 480,
         "wires": [
             [
                 "104074cc.da666b"
@@ -607,7 +577,7 @@
         "seg1": "",
         "seg2": "",
         "x": 730,
-        "y": 540,
+        "y": 480,
         "wires": []
     },
     {
@@ -707,95 +677,6 @@
         ]
     },
     {
-        "id": "9287fd31.95669",
-        "type": "ui_chart",
-        "z": "76b0c291.39da1c",
-        "name": "Battery Voltage",
-        "group": "f935a064.ba785",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "label": "Battery Voltage (V)",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "2",
-        "removeOlderPoints": "288",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "x": 940,
-        "y": 380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "d1d3f2c4.b2c0d",
-        "type": "delay",
-        "z": "76b0c291.39da1c",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 730,
-        "y": 240,
-        "wires": [
-            [
-                "c0e90f26.573f2"
-            ]
-        ]
-    },
-    {
-        "id": "6077e4b.5d5011c",
-        "type": "delay",
-        "z": "76b0c291.39da1c",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "10",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 740,
-        "y": 380,
-        "wires": [
-            [
-                "9287fd31.95669"
-            ]
-        ]
-    },
-    {
         "id": "d06e18df.c7d238",
         "type": "function",
         "z": "76b0c291.39da1c",
@@ -888,8 +769,7 @@
         "wires": [
             [
                 "248015fd.96c52a",
-                "ab68d793.4d2578",
-                "1dd1e113.23037f"
+                "ab68d793.4d2578"
             ]
         ]
     },
@@ -936,8 +816,7 @@
         "y": 180,
         "wires": [
             [
-                "f8db618d.0283a",
-                "4f28bacc.92dc14"
+                "f8db618d.0283a"
             ]
         ]
     },
@@ -966,138 +845,6 @@
         "x": 950,
         "y": 240,
         "wires": []
-    },
-    {
-        "id": "f100d6fd.dfa5b8",
-        "type": "ui_chart",
-        "z": "4e2566b7.d794d8",
-        "name": "tempChart",
-        "group": "86ad0b61.c0e7e8",
-        "order": 2,
-        "width": "0",
-        "height": "0",
-        "label": "Temperature",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "2",
-        "removeOlderPoints": "288",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "x": 950,
-        "y": 300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "dbd97b03.86d548",
-        "type": "ui_chart",
-        "z": "4e2566b7.d794d8",
-        "name": "humidChart",
-        "group": "86ad0b61.c0e7e8",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "label": "Humidity",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "2",
-        "removeOlderPoints": "288",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "x": 950,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4f28bacc.92dc14",
-        "type": "delay",
-        "z": "4e2566b7.d794d8",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "10",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 760,
-        "y": 140,
-        "wires": [
-            [
-                "dbd97b03.86d548"
-            ]
-        ]
-    },
-    {
-        "id": "1dd1e113.23037f",
-        "type": "delay",
-        "z": "4e2566b7.d794d8",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "10",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 760,
-        "y": 300,
-        "wires": [
-            [
-                "f100d6fd.dfa5b8"
-            ]
-        ]
     },
     {
         "id": "b97e688b.7de7e8",
@@ -1233,7 +980,7 @@
         "type": "function",
         "z": "ca44c186.e38c2",
         "name": "initialise_variables",
-        "func": "global.set('disconnect_pv',false);\nglobal.set('auto',false);\nglobal.set('auto_latch',false);\nreturn msg;",
+        "func": "global.set('disconnect_pv',false);\nglobal.set('auto',false);\nglobal.set('auto_latch',false);\nglobal.set('pv_power_peak',0);\nglobal.set('pv_power_avg',0);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1263,5 +1010,512 @@
         "x": 530,
         "y": 240,
         "wires": []
+    },
+    {
+        "id": "81e9015c.26ca3",
+        "type": "function",
+        "z": "e33b33c9.6663f",
+        "name": "get_pv_power",
+        "func": "msg.payload = global.get('pv_power');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 320,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2597c8a9.0245b8",
+        "type": "ui_chart",
+        "z": "e33b33c9.6663f",
+        "name": "Battery Voltage",
+        "group": "f935a064.ba785",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "Battery Voltage (V)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "288",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 780,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2818cbb6.ba24a4",
+        "type": "function",
+        "z": "e33b33c9.6663f",
+        "name": "get_battery_voltage",
+        "func": "msg.payload = global.get('battery_voltage');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 330,
+        "y": 300,
+        "wires": [
+            [
+                "2597c8a9.0245b8"
+            ]
+        ]
+    },
+    {
+        "id": "a579588.1169da8",
+        "type": "inject",
+        "z": "e33b33c9.6663f",
+        "name": "5min_trigger",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 280,
+        "wires": [
+            [
+                "81e9015c.26ca3",
+                "2818cbb6.ba24a4",
+                "aafed732.1dd0e8"
+            ]
+        ]
+    },
+    {
+        "id": "260096d9.982f8a",
+        "type": "ui_chart",
+        "z": "e33b33c9.6663f",
+        "name": "humidChart",
+        "group": "86ad0b61.c0e7e8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Humidity",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "288",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 910,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2de8bf3.3ffab8",
+        "type": "function",
+        "z": "e33b33c9.6663f",
+        "name": "getHumidity",
+        "func": "msg.payload = msg.humidity;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 510,
+        "y": 440,
+        "wires": [
+            [
+                "260096d9.982f8a"
+            ]
+        ]
+    },
+    {
+        "id": "d0c4221e.dab05",
+        "type": "ui_chart",
+        "z": "e33b33c9.6663f",
+        "name": "tempChart",
+        "group": "86ad0b61.c0e7e8",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "288",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 770,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aafed732.1dd0e8",
+        "type": "rpi-dht22",
+        "z": "e33b33c9.6663f",
+        "name": "Temperature",
+        "topic": "rpi-dht22",
+        "dht": "22",
+        "pintype": "0",
+        "pin": "17",
+        "x": 310,
+        "y": 480,
+        "wires": [
+            [
+                "e2de8bf3.3ffab8",
+                "d0c4221e.dab05"
+            ]
+        ]
+    },
+    {
+        "id": "cb561148.8a146",
+        "type": "ui_text",
+        "z": "76b0c291.39da1c",
+        "group": "c2d0b90f.37e558",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "pv_power_peak",
+        "label": "PV Max power",
+        "format": "{{msg.payload}}W",
+        "layout": "row-spread",
+        "x": 740,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "7f5105a8.23e10c",
+        "type": "inject",
+        "z": "ca44c186.e38c2",
+        "name": "reset_every_day",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "39 23 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 420,
+        "wires": [
+            [
+                "78015b65.0e34e4"
+            ]
+        ]
+    },
+    {
+        "id": "78015b65.0e34e4",
+        "type": "function",
+        "z": "ca44c186.e38c2",
+        "name": "reset_variables",
+        "func": "global.set('pv_power_peak',0);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a6bb92e.bff3b7",
+        "type": "function",
+        "z": "76b0c291.39da1c",
+        "name": "get_peak_power",
+        "func": "var pv_pwr = global.get('pv_power');\nvar pv_pwr_pk = global.get('pv_power_peak');\n\nif(pv_pwr > pv_pwr_pk){\n    pv_pwr_pk = pv_pwr;\n    global.set('pv_power_peak',pv_pwr_pk);\n}\nmsg.payload = pv_pwr_pk;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 490,
+        "y": 260,
+        "wires": [
+            [
+                "cb561148.8a146"
+            ]
+        ]
+    },
+    {
+        "id": "3a7fc8fc.c89a38",
+        "type": "inject",
+        "z": "f167e4d1.d12468",
+        "name": "5Hz",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "0.2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "6cf0351c.945f8c"
+            ]
+        ]
+    },
+    {
+        "id": "6cf0351c.945f8c",
+        "type": "function",
+        "z": "f167e4d1.d12468",
+        "name": "pv_power_avg",
+        "func": "var pv_power = parseFloat(global.get('pv_power'));\nvar pv_power_avg_counter = flow.get('pv_power_avg_counter');\nvar pv_power_acc = flow.get('pv_power_acc');\nvar pv_power_avg;\n\npv_power_avg_counter = pv_power_avg_counter +1;\npv_power_acc = pv_power_acc + pv_power;\n\npv_power_avg = pv_power_acc/pv_power_avg_counter;\n\nflow.set('pv_power_acc',pv_power_acc);\nflow.set('pv_power_avg_counter',pv_power_avg_counter);\nglobal.set('pv_power_avg',pv_power_avg);\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 470,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "31f0657b.6fe8fa",
+        "type": "inject",
+        "z": "f167e4d1.d12468",
+        "name": "5min",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "f4053dd3.1890f"
+            ]
+        ]
+    },
+    {
+        "id": "fe482537.e43688",
+        "type": "inject",
+        "z": "f167e4d1.d12468",
+        "name": "Enable PV on power up",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "jsonata",
+        "x": 210,
+        "y": 60,
+        "wires": [
+            [
+                "9dfbc82.d2d1638"
+            ]
+        ]
+    },
+    {
+        "id": "9dfbc82.d2d1638",
+        "type": "function",
+        "z": "f167e4d1.d12468",
+        "name": "init_flow_variables",
+        "func": "flow.set('pv_power_avg_counter',0);\nflow.set('pv_power_acc',0.0);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 520,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f4053dd3.1890f",
+        "type": "function",
+        "z": "f167e4d1.d12468",
+        "name": "get_pv_power_avg",
+        "func": "msg.payload = global.get('pv_power_avg');\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 470,
+        "y": 120,
+        "wires": [
+            [
+                "626be538.baa9ec"
+            ]
+        ]
+    },
+    {
+        "id": "626be538.baa9ec",
+        "type": "ui_chart",
+        "z": "f167e4d1.d12468",
+        "name": "PW Power",
+        "group": "c2d0b90f.37e558",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "label": "PV Power (W)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "288",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 710,
+        "y": 120,
+        "wires": [
+            [
+                "eac36fab.8c15b"
+            ]
+        ]
+    },
+    {
+        "id": "eac36fab.8c15b",
+        "type": "function",
+        "z": "f167e4d1.d12468",
+        "name": "reset_averaging",
+        "func": "global.set('pv_power_avg',0);\nflow.set('pv_power_acc',0);\nflow.set('pv_power_avg_counter',0);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 960,
+        "y": 120,
+        "wires": [
+            []
+        ]
     }
 ]
